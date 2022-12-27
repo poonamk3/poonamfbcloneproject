@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Like,Comment,Profile,Multiplefield
+from .models import Post,Like,Comment,Profile,Multiplefield,Myfrom
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
 	# list_display = ('title','image','author')
@@ -9,6 +9,7 @@ admin.site.register(Like)
 admin.site.register(Comment)
 admin.site.register(Profile)
 admin.site.register(Multiplefield)
+admin.site.register(Myfrom)
 
 
 

@@ -55,7 +55,14 @@ class Multiplefield(models.Model):
 	def __str__(self):
 		return self.value
 
+class Myfrom(models.Model):
+	email = models.EmailField(max_length=200)
+	name=models.CharField(max_length=200)
+	lastname=models.CharField(max_length=200)
+	password=models.CharField(max_length=200)
 
+	def __str__(self):
+		return self.name
 
 
 # created_at__month ====> created_at month find

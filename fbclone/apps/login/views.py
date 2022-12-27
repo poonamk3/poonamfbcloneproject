@@ -11,7 +11,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from django.http import JsonResponse
-from .models import Post,Like,Comment,Multiplefield
+from .models import Post,Like,Comment,Multiplefield,Myfrom
 from django.views.generic.edit import DeleteView
 from bootstrap_modal_forms.generic import BSModalCreateView
 from django.shortcuts import  get_object_or_404
@@ -85,6 +85,25 @@ class Multiplefielddata(CreateView):
     success_url = '/'
    
        
+def add_show(request):
+    if request.method == 'POST':
+        email=request.POST.get("email")
+        name=request.POST.get("name")
+        lastname=request.POST.get("lastname")
+        password=request.POST.get("password")
+        em=Myfrom(email=email,name=name,lastname=lastname,password=password)
+        em.save()
+    return render(request, 'enroll/fromexample.html')
+    # if request.method=='POST':
+    #     import pdb;pdb.set_trace()
+    #     email=request.POST['email']
+    #     name=request.POST['name']
+    #     lastname=request.POST['lastname']
+    #     password=request.POST['passwords']
+    #     em=Myfrom.objects.create(email=email,name=name,lastname=lastname,password=password)
+    #     # em.save()
+    #     messages.success(request,'Data has been submitted')
+    # return render(request,'enroll/fromexample.html')
 
 
 class MyPostView(ListView):
