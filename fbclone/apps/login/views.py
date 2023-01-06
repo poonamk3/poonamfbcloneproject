@@ -18,9 +18,11 @@ from django.shortcuts import  get_object_or_404
 from django.urls import reverse_lazy
 from login.task import *
 from .mailflie import *
-from . import signals
+# from . import signals
 from django.core.paginator import Paginator
-
+from midd.main import SimpleMiddleware
+from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 
 class IndexView(TemplateView):
     template_name='enroll/home.html'
@@ -66,13 +68,15 @@ class HomeLoginView(TemplateView):
     template_name='enroll/homelogin.html'
 
 
+# @SimpleMiddleware()
+# @cache_page(60 * 15)
 class PostListView(ListView):
     # send_mail_without()
     send_mail_task.delay()
     # sleepy(10)
     # sleepy.delay(10)    
     # signals use
-    signals.notification.send(sender=Post,title="hello")
+    # signals.notification.send(sender=Post,title="hello")
     model = Post
     template_name='enroll/postlist.html'
     ordering=['-created_at']
@@ -186,9 +190,12 @@ def add_comment(request):
 
     return redirect("/")
 
+
+
 from django.core.cache import cache
 # ********** redis use *************
 def Post_data(request):
+    # import pdb;pdb.set_trace()
     payload=[]
     db=None
     if cache.get("key"):
@@ -204,5 +211,14 @@ def Post_data(request):
             # redis time set 
         cache.set("key",payload,timeout=22)
         db='postgres'
-
     return JsonResponse({'data':payload,'db':db})
+
+
+    
+import requests,json
+def data_api(request):
+    data="poonam"
+    resp=requests.get("http://127.0.0.1:8000/api/post/")
+    datas=json.loads(resp.text)
+    return HttpResponse(datas)
+    # return HttpResponse(resp.status_code)

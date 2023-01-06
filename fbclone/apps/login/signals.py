@@ -9,11 +9,11 @@ from django.contrib.auth.models import User
 providing_args = ["title"]
 notification=Signal(providing_args)
 
-# Home Page singnal
+"""# Home Page singnal
 @receiver(notification)
 def show_notification(sender,**kwargs):
-	print(sender)
-	print(f'{kwargs}')
+    print(sender)
+    print(f'{kwargs}')
 
 
 
@@ -25,8 +25,8 @@ def func(sender,**kwargs):
 
 # Post Save 
 def save_post(sender,instance,**kwargs):
-	print("Post Save")
-	print(sender)
+    print("Post Save")
+    print(sender)
 
 post_save.connect(save_post,sender=Post)
 
@@ -65,4 +65,4 @@ def loginfailed(sender,credentials, request, **kwargs):
 @receiver(post_save,sender=User)
 def prof(sender ,instance ,created ,**kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user=instance)"""

@@ -350,7 +350,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # d2fe7eabb3b8862e83102af559f70e71 appsecret
 
-"""CACHES = {
+CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/1",
@@ -359,7 +359,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-"""
+
 
 # Database caching
 CACHE_MIDDLEWARE_SECONDS =20

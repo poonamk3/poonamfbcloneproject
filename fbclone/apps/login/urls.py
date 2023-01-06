@@ -20,6 +20,7 @@ urlpatterns = [
     path('comment/',views.add_comment,name="mment"),
     path('redisuse/',views.Post_data,name="redis"),
     path('from/',views.add_show,name="add_show_data"),
+    path('apidata/',views.data_api,name="data_api"),
     
     
 # ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  
